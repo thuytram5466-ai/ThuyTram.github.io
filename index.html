@@ -28,7 +28,6 @@
     overflow-x: hidden;
   }
 
-  /* Custom cursor */
   .cursor {
     width: 8px; height: 8px;
     background: var(--ink);
@@ -51,7 +50,6 @@
     opacity: 0.7;
   }
 
-  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
     z-index: 100;
@@ -79,7 +77,6 @@
   }
   .nav-links a:hover { color: var(--ink); }
 
-  /* HERO */
   .hero {
     min-height: 100vh;
     display: grid;
@@ -198,7 +195,7 @@
     flex-shrink: 0;
   }
   .hero-image-block::after {
-    content: 'YOUR\APHOTO';
+    content: 'ẢNH\ACỦA BẠN';
     white-space: pre;
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
@@ -263,7 +260,6 @@
     animation: scrollLine 2s ease-in-out infinite;
   }
 
-  /* MARQUEE */
   .marquee-section {
     padding: 24px 0;
     border-top: 1px solid var(--rule);
@@ -286,12 +282,8 @@
     letter-spacing: 0.05em;
     flex-shrink: 0;
   }
-  .marquee-dot {
-    color: var(--accent);
-    font-style: normal;
-  }
+  .marquee-dot { color: var(--accent); font-style: normal; }
 
-  /* ABOUT */
   .about {
     padding: 120px 60px;
     display: grid;
@@ -313,10 +305,6 @@
     background: var(--accent);
     display: block;
   }
-
-  .about-left { padding-top: 8px; }
-
-  .about-right {}
 
   .about-heading {
     font-family: 'Cormorant Garamond', serif;
@@ -350,22 +338,10 @@
   }
   .skill-item:nth-child(odd) { padding-right: 32px; border-right: 1px solid var(--rule); }
   .skill-item:nth-child(even) { padding-left: 32px; }
-  .skill-name {
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    color: var(--ink);
-  }
-  .skill-tag {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.8rem;
-    color: var(--accent);
-  }
+  .skill-name { font-size: 0.8rem; letter-spacing: 0.08em; color: var(--ink); }
+  .skill-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.8rem; color: var(--accent); }
 
-  /* WORK */
-  .work {
-    padding: 40px 60px 120px;
-  }
+  .work { padding: 40px 60px 120px; }
 
   .work-header {
     display: flex; justify-content: space-between; align-items: flex-end;
@@ -402,20 +378,14 @@
     overflow: hidden;
     cursor: none;
     transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
-    position: relative;
   }
   .project-card:hover { transform: translateY(-6px); }
   .project-card:hover .project-img-fill { transform: scale(1.04); }
-
   .project-card.large { grid-column: span 7; }
   .project-card.medium { grid-column: span 5; }
   .project-card.full { grid-column: span 12; display: grid; grid-template-columns: 1fr 1fr; }
 
-  .project-img {
-    height: 300px;
-    overflow: hidden;
-    position: relative;
-  }
+  .project-img { height: 300px; overflow: hidden; }
   .project-card.full .project-img { height: 100%; min-height: 280px; }
 
   .project-img-fill {
@@ -424,7 +394,6 @@
     transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
     display: flex; align-items: center; justify-content: center;
   }
-
   .project-img-fill span {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -433,7 +402,6 @@
     color: var(--accent);
     opacity: 0.6;
   }
-
   .project-img-fill.c2 { background: #e8e4dc; }
   .project-img-fill.c3 { background: #ddd8ce; }
   .project-img-fill.c4 { background: #f0ece4; }
@@ -484,7 +452,6 @@
   .project-link:hover { gap: 14px; border-color: var(--accent); }
   .project-link::after { content: '→'; }
 
-  /* TESTIMONIAL */
   .testimonial {
     padding: 100px 60px;
     background: var(--ink);
@@ -519,27 +486,11 @@
     margin-bottom: 40px;
   }
 
-  .testimonial-author {
-    display: flex; align-items: center; gap: 20px;
-  }
-  .author-line {
-    width: 40px; height: 1px;
-    background: var(--accent);
-  }
-  .author-info {}
-  .author-name {
-    font-size: 0.82rem;
-    letter-spacing: 0.1em;
-    color: #fff;
-    margin-bottom: 3px;
-  }
-  .author-role {
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.4);
-  }
+  .testimonial-author { display: flex; align-items: center; gap: 20px; }
+  .author-line { width: 40px; height: 1px; background: var(--accent); }
+  .author-name { font-size: 0.82rem; letter-spacing: 0.1em; color: #fff; margin-bottom: 3px; }
+  .author-role { font-size: 0.68rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
 
-  /* CONTACT */
   .contact {
     padding: 120px 60px;
     display: grid;
@@ -587,31 +538,23 @@
     font-weight: 400;
     letter-spacing: 0.02em;
   }
-  .contact-link-arrow {
-    font-size: 1.1rem;
-    color: var(--rule);
-    transition: color 0.2s;
+  .contact-link-sub {
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+    margin-top: 2px;
   }
+  .contact-link-left { display: flex; flex-direction: column; }
+  .contact-link-arrow { font-size: 1.1rem; color: var(--rule); transition: color 0.2s; }
 
-  /* FOOTER */
   footer {
     padding: 32px 60px;
     border-top: 1px solid var(--rule);
     display: flex; justify-content: space-between; align-items: center;
   }
-  .footer-copy {
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    color: var(--ink-light);
-  }
-  .footer-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--ink-light);
-  }
+  .footer-copy { font-size: 0.68rem; letter-spacing: 0.12em; color: var(--ink-light); }
+  .footer-name { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--ink-light); }
 
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -629,18 +572,13 @@
     100% { left: 100%; }
   }
 
-  /* SCROLL REVEAL */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 20px 30px; }
     .hero { grid-template-columns: 1fr; padding: 100px 30px 60px; }
@@ -662,11 +600,11 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Your Name</a>
+  <a href="#" class="nav-logo">Thùy Trâm</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Liên hệ</a></li>
   </ul>
 </nav>
 
@@ -681,7 +619,7 @@
       <em>convert.</em>
     </h1>
     <p class="hero-desc">
-      Chuyên gia xây dựng thương hiệu qua nội dung — từ chiến lược đến từng dòng copy, mình tạo ra những câu chuyện chạm đến đúng người, đúng lúc.
+      Xin chào, mình là <strong>Huỳnh Ngọc Thùy Trâm</strong> — chuyên gia xây dựng thương hiệu qua nội dung. Từ chiến lược đến từng dòng copy, mình tạo ra những câu chuyện chạm đến đúng người, đúng lúc.
     </p>
     <div class="hero-cta">
       <a href="#work" class="btn-primary">Xem dự án</a>
@@ -724,7 +662,6 @@
     <span class="marquee-item">Campaign Planning <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">Email Marketing <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">Storytelling <span class="marquee-dot">✦</span></span>
-    <!-- Duplicate for seamless loop -->
     <span class="marquee-item">Content Strategy <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">Copywriting <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">Brand Voice <span class="marquee-dot">✦</span></span>
@@ -744,7 +681,7 @@
   <div class="about-right reveal">
     <h2 class="about-heading">Mình không chỉ viết —<br>mình <em>xây dựng</em><br>kết nối.</h2>
     <p class="about-text">
-      Với hơn 4 năm trong ngành Marketing & Content, mình đã hợp tác cùng các thương hiệu từ startup đến doanh nghiệp lớn, giúp họ tìm tiếng nói riêng và chạm đến đúng đối tượng mục tiêu. Mình tin rằng một bài viết tốt không chỉ hay — nó phải có mục đích.
+      Với kinh nghiệm trong ngành Marketing & Content, mình đã hợp tác cùng các thương hiệu từ startup đến doanh nghiệp lớn, giúp họ tìm tiếng nói riêng và chạm đến đúng đối tượng mục tiêu. Mình tin rằng một bài viết tốt không chỉ hay — nó phải có mục đích.
     </p>
     <div class="skills-grid">
       <div class="skill-item"><span class="skill-name">Content Strategy</span><span class="skill-tag">Expert</span></div>
@@ -765,15 +702,14 @@
   </div>
 
   <div class="projects-grid">
-
     <div class="project-card large reveal">
       <div class="project-img">
         <div class="project-img-fill"><span>Campaign Visual</span></div>
       </div>
       <div class="project-info">
         <p class="project-cat">Brand Campaign</p>
-        <h3 class="project-name"><em>Rebranding</em> Thương Hiệu F&B</h3>
-        <p class="project-desc">Xây dựng toàn bộ nội dung & brand voice cho chiến dịch ra mắt lại thương hiệu — từ tagline đến từng bài post mạng xã hội. Kết quả: tăng 280% engagement trong tháng đầu.</p>
+        <h3 class="project-name"><em>Tên dự án</em> của bạn</h3>
+        <p class="project-desc">Mô tả ngắn về dự án này — bạn đã làm gì, kết quả đạt được là gì. Thay đoạn này bằng thông tin thật của bạn.</p>
         <a href="#" class="project-link">Xem chi tiết</a>
       </div>
     </div>
@@ -784,8 +720,8 @@
       </div>
       <div class="project-info">
         <p class="project-cat">Content Strategy</p>
-        <h3 class="project-name">Chiến Lược <em>Nội Dung</em> 6 Tháng</h3>
-        <p class="project-desc">Lên kế hoạch content tổng thể cho startup EdTech, tăng organic traffic 3x trong 6 tháng.</p>
+        <h3 class="project-name"><em>Tên dự án</em> 2</h3>
+        <p class="project-desc">Mô tả ngắn về dự án — thay bằng nội dung thật của bạn.</p>
         <a href="#" class="project-link">Xem chi tiết</a>
       </div>
     </div>
@@ -796,53 +732,26 @@
       </div>
       <div class="project-info">
         <p class="project-cat">Social Media Campaign</p>
-        <h3 class="project-name">Viral <em>Campaign</em><br>Tết 2024</h3>
-        <p class="project-desc">Chiến dịch Tết đa nền tảng đạt 5 triệu lượt tiếp cận tự nhiên, 200k+ lượt chia sẻ. Câu chuyện cảm xúc kết hợp product placement tự nhiên.</p>
+        <h3 class="project-name"><em>Tên dự án</em> 3</h3>
+        <p class="project-desc">Mô tả chi tiết hơn về dự án nổi bật nhất của bạn. Nêu rõ bạn đã làm gì và kết quả đạt được.</p>
         <a href="#" class="project-link">Xem chi tiết</a>
       </div>
     </div>
-
-    <div class="project-card medium reveal" style="transition-delay:0.2s">
-      <div class="project-img" style="height:240px">
-        <div class="project-img-fill c4"><span>Newsletter</span></div>
-      </div>
-      <div class="project-info">
-        <p class="project-cat">Email Marketing</p>
-        <h3 class="project-name"><em>Newsletter</em> Series</h3>
-        <p class="project-desc">Chuỗi 12 email nurture với open rate 42%, cao hơn 2x trung bình ngành.</p>
-        <a href="#" class="project-link">Xem chi tiết</a>
-      </div>
-    </div>
-
-    <div class="project-card large reveal" style="transition-delay:0.25s">
-      <div class="project-img" style="height:240px">
-        <div class="project-img-fill c2"><span>SEO</span></div>
-      </div>
-      <div class="project-info">
-        <p class="project-cat">SEO Content</p>
-        <h3 class="project-name">Content <em>Hub</em> — Top 1 Google</h3>
-        <p class="project-desc">Xây dựng 80+ bài viết SEO tối ưu, đưa 35 từ khóa target lên top 3 Google Việt Nam trong 4 tháng.</p>
-        <a href="#" class="project-link">Xem chi tiết</a>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- TESTIMONIAL -->
 <section class="testimonial">
-  <div class="testimonial-label reveal">
-    Client<br>Review
-  </div>
+  <div class="testimonial-label reveal">Client<br>Review</div>
   <div class="reveal" style="transition-delay:0.1s">
     <blockquote class="testimonial-quote">
-      "Bạn ấy không chỉ viết nội dung — bạn ấy hiểu business của chúng tôi và biến nó thành ngôn ngữ mà khách hàng thực sự muốn đọc."
+      "Thay đoạn này bằng một nhận xét thật từ khách hàng hoặc đồng nghiệp của bạn."
     </blockquote>
     <div class="testimonial-author">
       <div class="author-line"></div>
       <div class="author-info">
-        <p class="author-name">Nguyễn Minh Tú</p>
-        <p class="author-role">Marketing Director, ABC Brand</p>
+        <p class="author-name">Tên người nhận xét</p>
+        <p class="author-role">Chức vụ, Tên công ty</p>
       </div>
     </div>
   </div>
@@ -855,25 +764,37 @@
       Let's work
       <em>together.</em>
     </h2>
-    <p class="contact-sub">Bạn có dự án thú vị? Mình luôn sẵn sàng lắng nghe và cùng tạo ra điều gì đó ý nghĩa.</p>
-    <a href="mailto:your@email.com" class="btn-primary">Gửi email cho mình</a>
+    <p class="contact-sub">Bạn có dự án thú vị? Mình — <strong>Huỳnh Ngọc Thùy Trâm</strong> — luôn sẵn sàng lắng nghe và cùng tạo ra điều gì đó ý nghĩa.</p>
+    <a href="mailto:Thuytram5466@gmail.com" class="btn-primary">Gửi email cho mình</a>
   </div>
 
   <div class="contact-links reveal" style="transition-delay:0.15s">
-    <a href="mailto:your@email.com" class="contact-link">
-      <span class="contact-link-name">Email</span>
+    <a href="mailto:Thuytram5466@gmail.com" class="contact-link">
+      <div class="contact-link-left">
+        <span class="contact-link-name">Email</span>
+        <span class="contact-link-sub">Thuytram5466@gmail.com</span>
+      </div>
+      <span class="contact-link-arrow">↗</span>
+    </a>
+    <a href="tel:0354215933" class="contact-link">
+      <div class="contact-link-left">
+        <span class="contact-link-name">Điện thoại</span>
+        <span class="contact-link-sub">0354 215 933</span>
+      </div>
       <span class="contact-link-arrow">↗</span>
     </a>
     <a href="https://linkedin.com" target="_blank" class="contact-link">
-      <span class="contact-link-name">LinkedIn</span>
+      <div class="contact-link-left">
+        <span class="contact-link-name">LinkedIn</span>
+        <span class="contact-link-sub">Huỳnh Ngọc Thùy Trâm</span>
+      </div>
       <span class="contact-link-arrow">↗</span>
     </a>
     <a href="https://facebook.com" target="_blank" class="contact-link">
-      <span class="contact-link-name">Facebook</span>
-      <span class="contact-link-arrow">↗</span>
-    </a>
-    <a href="https://instagram.com" target="_blank" class="contact-link">
-      <span class="contact-link-name">Instagram</span>
+      <div class="contact-link-left">
+        <span class="contact-link-name">Facebook</span>
+        <span class="contact-link-sub">Huỳnh Ngọc Thùy Trâm</span>
+      </div>
       <span class="contact-link-arrow">↗</span>
     </a>
   </div>
@@ -881,12 +802,11 @@
 
 <!-- FOOTER -->
 <footer>
-  <p class="footer-copy">© 2025 Your Name. All rights reserved.</p>
+  <p class="footer-copy">© 2025 Huỳnh Ngọc Thùy Trâm. All rights reserved.</p>
   <p class="footer-name">Made with care ✦</p>
 </footer>
 
 <script>
-  // Custom cursor
   const cursor = document.getElementById('cursor');
   const cursorRing = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
@@ -906,7 +826,6 @@
 
   document.querySelectorAll('a, button, .project-card').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      cursor.style.transform += ' scale(2.5)';
       cursor.style.background = 'var(--accent)';
       cursorRing.style.opacity = '0.3';
     });
@@ -916,10 +835,9 @@
     });
   });
 
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
         observer.unobserve(entry.target);
