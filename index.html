@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Your Name</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf8f4;
+    --warm-white: #f5f2ec;
+    --ink: #1a1814;
+    --ink-light: #5a5650;
+    --accent: #c8a882;
+    --accent-soft: #e8ddd0;
+    --rule: #d8d2c8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--ink);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, width 0.2s, height 0.2s, background 0.2s;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.2s;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 28px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    mix-blend-mode: multiply;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%; right: -5%;
+    width: 55vw; height: 110vh;
+    background: var(--warm-white);
+    border-radius: 0 0 0 60% / 0 0 0 30%;
+    z-index: 0;
+  }
+
+  .hero-left {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 40px;
+  }
+
+  .hero-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 8vw, 7.5rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--ink);
+    display: block;
+  }
+  .hero-title span {
+    font-style: normal;
+    color: var(--ink-light);
+    font-weight: 300;
+  }
+
+  .hero-desc {
+    margin-top: 40px;
+    max-width: 340px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--ink-light);
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.6s forwards;
+  }
+
+  .hero-cta {
+    margin-top: 48px;
+    display: flex; gap: 24px; align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    padding: 14px 36px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+  .btn-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .btn-link:hover { gap: 14px; color: var(--ink); }
+  .btn-link::after { content: '→'; }
+
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-end;
+    gap: 24px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 1s forwards;
+  }
+
+  .hero-image-block {
+    width: 320px; height: 420px;
+    background: var(--accent-soft);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .hero-image-block::after {
+    content: 'YOUR\APHOTO';
+    white-space: pre;
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-align: center;
+    line-height: 2;
+  }
+
+  .hero-stats {
+    display: flex; flex-direction: column; gap: 16px;
+    align-self: flex-end;
+    padding-bottom: 30px;
+  }
+  .stat {
+    text-align: right;
+    border-right: 2px solid var(--accent);
+    padding-right: 16px;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-top: 2px;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px; left: 60px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    opacity: 0;
+    animation: fadeIn 1s ease 1.4s forwards;
+  }
+  .scroll-line {
+    width: 60px; height: 1px;
+    background: var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    left: -100%; top: 0;
+    width: 100%; height: 100%;
+    background: var(--accent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  /* MARQUEE */
+  .marquee-section {
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    background: var(--warm-white);
+  }
+  .marquee-track {
+    display: flex;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    padding: 0 40px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  .marquee-dot {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 120px 60px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--accent);
+    display: block;
+  }
+
+  .about-left { padding-top: 8px; }
+
+  .about-right {}
+
+  .about-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 32px;
+    letter-spacing: -0.02em;
+  }
+  .about-heading em { font-style: italic; }
+
+  .about-text {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--ink-light);
+    font-weight: 300;
+    max-width: 540px;
+    margin-bottom: 48px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .skill-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .skill-item:nth-child(odd) { padding-right: 32px; border-right: 1px solid var(--rule); }
+  .skill-item:nth-child(even) { padding-left: 32px; }
+  .skill-name {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+  .skill-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+
+  /* WORK */
+  .work {
+    padding: 40px 60px 120px;
+  }
+
+  .work-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 60px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .work-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+  .work-title em { font-style: italic; }
+
+  .work-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--rule);
+    line-height: 1;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--warm-white);
+    overflow: hidden;
+    cursor: none;
+    transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    position: relative;
+  }
+  .project-card:hover { transform: translateY(-6px); }
+  .project-card:hover .project-img-fill { transform: scale(1.04); }
+
+  .project-card.large { grid-column: span 7; }
+  .project-card.medium { grid-column: span 5; }
+  .project-card.full { grid-column: span 12; display: grid; grid-template-columns: 1fr 1fr; }
+
+  .project-img {
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+  }
+  .project-card.full .project-img { height: 100%; min-height: 280px; }
+
+  .project-img-fill {
+    width: 100%; height: 100%;
+    background: var(--accent-soft);
+    transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .project-img-fill span {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+
+  .project-img-fill.c2 { background: #e8e4dc; }
+  .project-img-fill.c3 { background: #ddd8ce; }
+  .project-img-fill.c4 { background: #f0ece4; }
+
+  .project-info { padding: 28px; }
+  .project-card.full .project-info {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 48px;
+  }
+
+  .project-cat {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .project-name em { font-style: italic; }
+
+  .project-desc {
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--ink-light);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .project-link {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 4px;
+    transition: gap 0.2s, border-color 0.2s;
+  }
+  .project-link:hover { gap: 14px; border-color: var(--accent); }
+  .project-link::after { content: '→'; }
+
+  /* TESTIMONIAL */
+  .testimonial {
+    padding: 100px 60px;
+    background: var(--ink);
+    color: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .testimonial-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .testimonial-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--accent);
+    display: block;
+  }
+
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    margin-bottom: 40px;
+  }
+
+  .testimonial-author {
+    display: flex; align-items: center; gap: 20px;
+  }
+  .author-line {
+    width: 40px; height: 1px;
+    background: var(--accent);
+  }
+  .author-info {}
+  .author-name {
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+  .author-role {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 120px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .contact-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .contact-heading em { font-style: italic; display: block; }
+
+  .contact-sub {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--ink-light);
+    font-weight: 300;
+    margin-top: 28px;
+    margin-bottom: 48px;
+    max-width: 320px;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 0; }
+  .contact-link {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    transition: padding-left 0.25s;
+    cursor: none;
+  }
+  .contact-link:first-child { border-top: 1px solid var(--rule); }
+  .contact-link:hover { padding-left: 12px; }
+  .contact-link:hover .contact-link-arrow { color: var(--accent); }
+
+  .contact-link-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .contact-link-arrow {
+    font-size: 1.1rem;
+    color: var(--rule);
+    transition: color 0.2s;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 60px;
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink-light);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes scrollLine {
+    0%   { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 20px 30px; }
+    .hero { grid-template-columns: 1fr; padding: 100px 30px 60px; }
+    .hero::before { display: none; }
+    .hero-right { align-items: center; }
+    .about, .contact { grid-template-columns: 1fr; gap: 40px; padding: 80px 30px; }
+    .work { padding: 40px 30px 80px; }
+    .project-card.large, .project-card.medium, .project-card.full { grid-column: span 12; }
+    .project-card.full { grid-template-columns: 1fr; }
+    .testimonial { grid-template-columns: 1fr; padding: 80px 30px; }
+    footer { padding: 24px 30px; flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-label">Marketing & Content Strategist</p>
+    <h1 class="hero-title">
+      <span>Crafting</span>
+      <em>stories</em>
+      <span>that</span>
+      <em>convert.</em>
+    </h1>
+    <p class="hero-desc">
+      Chuyên gia xây dựng thương hiệu qua nội dung — từ chiến lược đến từng dòng copy, mình tạo ra những câu chuyện chạm đến đúng người, đúng lúc.
+    </p>
+    <div class="hero-cta">
+      <a href="#work" class="btn-primary">Xem dự án</a>
+      <a href="#contact" class="btn-link">Liên hệ ngay</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-image-block"></div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Brands worked</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5M</div>
+        <div class="stat-label">Content reach</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Content Strategy <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Copywriting <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Brand Voice <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Social Media <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">SEO Content <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Campaign Planning <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Email Marketing <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Storytelling <span class="marquee-dot">✦</span></span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marquee-item">Content Strategy <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Copywriting <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Brand Voice <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Social Media <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">SEO Content <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Campaign Planning <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Email Marketing <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Storytelling <span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-left">
+    <div class="section-label">About me</div>
+  </div>
+  <div class="about-right reveal">
+    <h2 class="about-heading">Mình không chỉ viết —<br>mình <em>xây dựng</em><br>kết nối.</h2>
+    <p class="about-text">
+      Với hơn 4 năm trong ngành Marketing & Content, mình đã hợp tác cùng các thương hiệu từ startup đến doanh nghiệp lớn, giúp họ tìm tiếng nói riêng và chạm đến đúng đối tượng mục tiêu. Mình tin rằng một bài viết tốt không chỉ hay — nó phải có mục đích.
+    </p>
+    <div class="skills-grid">
+      <div class="skill-item"><span class="skill-name">Content Strategy</span><span class="skill-tag">Expert</span></div>
+      <div class="skill-item"><span class="skill-name">Copywriting</span><span class="skill-tag">Expert</span></div>
+      <div class="skill-item"><span class="skill-name">SEO Writing</span><span class="skill-tag">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Social Media</span><span class="skill-tag">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Email Marketing</span><span class="skill-tag">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Brand Voice</span><span class="skill-tag">Expert</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-header reveal">
+    <h2 class="work-title">Selected <em>Works</em></h2>
+    <span class="work-count">06</span>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card large reveal">
+      <div class="project-img">
+        <div class="project-img-fill"><span>Campaign Visual</span></div>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Brand Campaign</p>
+        <h3 class="project-name"><em>Rebranding</em> Thương Hiệu F&B</h3>
+        <p class="project-desc">Xây dựng toàn bộ nội dung & brand voice cho chiến dịch ra mắt lại thương hiệu — từ tagline đến từng bài post mạng xã hội. Kết quả: tăng 280% engagement trong tháng đầu.</p>
+        <a href="#" class="project-link">Xem chi tiết</a>
+      </div>
+    </div>
+
+    <div class="project-card medium reveal" style="transition-delay:0.1s">
+      <div class="project-img">
+        <div class="project-img-fill c2"><span>Editorial</span></div>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Content Strategy</p>
+        <h3 class="project-name">Chiến Lược <em>Nội Dung</em> 6 Tháng</h3>
+        <p class="project-desc">Lên kế hoạch content tổng thể cho startup EdTech, tăng organic traffic 3x trong 6 tháng.</p>
+        <a href="#" class="project-link">Xem chi tiết</a>
+      </div>
+    </div>
+
+    <div class="project-card full reveal" style="transition-delay:0.15s">
+      <div class="project-img">
+        <div class="project-img-fill c3"><span>Campaign</span></div>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Social Media Campaign</p>
+        <h3 class="project-name">Viral <em>Campaign</em><br>Tết 2024</h3>
+        <p class="project-desc">Chiến dịch Tết đa nền tảng đạt 5 triệu lượt tiếp cận tự nhiên, 200k+ lượt chia sẻ. Câu chuyện cảm xúc kết hợp product placement tự nhiên.</p>
+        <a href="#" class="project-link">Xem chi tiết</a>
+      </div>
+    </div>
+
+    <div class="project-card medium reveal" style="transition-delay:0.2s">
+      <div class="project-img" style="height:240px">
+        <div class="project-img-fill c4"><span>Newsletter</span></div>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Email Marketing</p>
+        <h3 class="project-name"><em>Newsletter</em> Series</h3>
+        <p class="project-desc">Chuỗi 12 email nurture với open rate 42%, cao hơn 2x trung bình ngành.</p>
+        <a href="#" class="project-link">Xem chi tiết</a>
+      </div>
+    </div>
+
+    <div class="project-card large reveal" style="transition-delay:0.25s">
+      <div class="project-img" style="height:240px">
+        <div class="project-img-fill c2"><span>SEO</span></div>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">SEO Content</p>
+        <h3 class="project-name">Content <em>Hub</em> — Top 1 Google</h3>
+        <p class="project-desc">Xây dựng 80+ bài viết SEO tối ưu, đưa 35 từ khóa target lên top 3 Google Việt Nam trong 4 tháng.</p>
+        <a href="#" class="project-link">Xem chi tiết</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="testimonial-label reveal">
+    Client<br>Review
+  </div>
+  <div class="reveal" style="transition-delay:0.1s">
+    <blockquote class="testimonial-quote">
+      "Bạn ấy không chỉ viết nội dung — bạn ấy hiểu business của chúng tôi và biến nó thành ngôn ngữ mà khách hàng thực sự muốn đọc."
+    </blockquote>
+    <div class="testimonial-author">
+      <div class="author-line"></div>
+      <div class="author-info">
+        <p class="author-name">Nguyễn Minh Tú</p>
+        <p class="author-role">Marketing Director, ABC Brand</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <h2 class="contact-heading">
+      Let's work
+      <em>together.</em>
+    </h2>
+    <p class="contact-sub">Bạn có dự án thú vị? Mình luôn sẵn sàng lắng nghe và cùng tạo ra điều gì đó ý nghĩa.</p>
+    <a href="mailto:your@email.com" class="btn-primary">Gửi email cho mình</a>
+  </div>
+
+  <div class="contact-links reveal" style="transition-delay:0.15s">
+    <a href="mailto:your@email.com" class="contact-link">
+      <span class="contact-link-name">Email</span>
+      <span class="contact-link-arrow">↗</span>
+    </a>
+    <a href="https://linkedin.com" target="_blank" class="contact-link">
+      <span class="contact-link-name">LinkedIn</span>
+      <span class="contact-link-arrow">↗</span>
+    </a>
+    <a href="https://facebook.com" target="_blank" class="contact-link">
+      <span class="contact-link-name">Facebook</span>
+      <span class="contact-link-arrow">↗</span>
+    </a>
+    <a href="https://instagram.com" target="_blank" class="contact-link">
+      <span class="contact-link-name">Instagram</span>
+      <span class="contact-link-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">© 2025 Your Name. All rights reserved.</p>
+  <p class="footer-name">Made with care ✦</p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+  });
+
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    cursorRing.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('a, button, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform += ' scale(2.5)';
+      cursor.style.background = 'var(--accent)';
+      cursorRing.style.opacity = '0.3';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.background = 'var(--ink)';
+      cursorRing.style.opacity = '0.7';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
